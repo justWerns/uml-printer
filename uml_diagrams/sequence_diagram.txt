@@ -1,0 +1,61 @@
+sequenceDiagram JawsUMLPrinter {
+    object aUMLPrinter : JawsUMLPrinter {}
+    object aDiagramNode : DiagramNode {}
+    object aClassNode : ClassNode {}
+    object anAttributeNode : AttributeNode {}
+    object aMethodNode : MethodNode {}
+    
+    ? calls aUMLPrinter.run();
+    aUMLPrinter.run() calls aUMLPrinter.deserializeParsetree();
+    aUMLPrinter.run() calls aUMLPrinter.writeUMLJaws();
+    aUMLPrinter.writeUMLJaws() calls Node.buildNode(
+        parsetree : List<Object>) constructs theRootNode;
+    Node.buildNode() returns TheRootNode to aUMLPrinter.writeUMLJaws();
+    aUMLPrinter.writeUMLJaws() calls theRootNode.printUMLJaws();
+
+    @For every string in the parsetree, for most(/all) nodes:@
+    theRootNode.printUMLJaws() calls theRootNode.printToken(
+        tokenString : String);
+
+    @
+    The following is done for every node in the parsetree, for most(/all) nodes.
+    NOTE: Node.buildNode may return any subclass of Node.
+    Examples of various node calls are shown below.
+    @
+    theRootNode.printUMLJaws() calls Node.buildNode(
+        subtree : List<Object>) constructs aDiagramNode;
+    Node.buildNode() returns aDiagramNode to theRootNode.printUMLJaws();
+    theRootNode.printUMLJaws() calls aDiagramNode.printUMLJaws();
+    
+    @For every string in the parsetree, for most(/all) nodes.@
+    aDiagramNode.printUMLJaws() calls aDiagramNode.printToken(
+        tokenString : String);
+    
+    @
+    Each node will loop through it's parsetree, either calling printToken or
+    creating a new node and calling printUMLJaws on it. These calls become very
+    nested and complex very quickly.
+    For the sake of readability/sanity, looped calls are implied.
+    @
+        
+    aDiagramNode.printUMLJaws() calls Node.buildNode(
+        subtree : List<Object>) constructs aClassNode;
+    Node.buildNode() returns aClassNode to aDiagramNode.printUMLJaws();
+    aDiagramNode.printUMLJaws() calls aClassNode.printUMLJaws();
+
+    aClassNode.printUMLJaws() calls aClassNode.printToken(
+        tokenString : String);
+
+    aClassNode.printUMLJaws() calls Node.buildNode(
+        subtree : List<Object>) constructs anAttributeNode;
+    Node.buildNode() returns anAttributeNode to aClassNode.printUMLJaws();
+    aClassNode.printUMLJaws() calls anAttributeNode.printUMLJaws();
+
+    anAttributeNode.printUMLJaws() calls aClassNode.printToken(
+        tokenString : String);
+        
+    anAttributeNode.printUMLJaws() returns String to aClassNode.printUMLJaws();
+    aClassNode.printUMLJaws() returns String to aDiagramNode.printUMLJaws();
+    aDiagramNode.printUMLJaws() returns String to theRootNode.printUMLJaws();
+    theRootNode.printUMLJaws() returns String to aUMLPrinter.writeUMLJaws();
+}

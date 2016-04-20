@@ -1,0 +1,75 @@
+classDiagram JawsUMLPrinter {
+    package umlprinter {
+        class JawsUMLPrinter {
+            - parsetree : List<Object>;
+            - readFile : InputStream;
+            - printFile : OutputStream;
+
+            - JawsUMLPrinter(String);
+            + static main(String[]) : void;
+            @Runnable? No need to thread it, but why not?@
+            + run() : void;
+            - writeUMLIndented() : void;
+            - writeUMLJaws() : void;
+            - createGraph() : void;
+            - deserializeParsetree() : void;
+        } [1]uses[*] "nodes" Node; @end JawsUMLPrinter@
+
+        interface Node {
+            + printUMLIndented() : String;
+            + printUMLJaws() : String;
+            @Not entirely sure how creating images works yet.@
+            + createGraph(??) : ??;
+            + static final buildNode(List<Object>) : Node;
+        } @end Node@
+
+        abstract class AbstractNode implements Node {
+            # parsetree : List<Object>;
+            # indentedTokenMap : HashMap<String, String>;
+            # jawsTokenMap : HashMap<String, String>;
+
+            - AbstractNode(List<Object>);
+            + printUMLIndented() : String;
+            + printUMLJaws() : String;
+            + createGraph(??) : ??;
+            # printToken(String) : String;
+            # printChildNode(List<Object>) : String;
+        } @end AbstractNode@
+
+        @
+        From this point on, the child classes are used to define the different
+        token maps. In addition, the concrete classes could override the
+        print/create methods if extra parsing is necessary, but this should
+        rarely be needed.
+        @
+        class RootNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end RootNode@
+        
+        class DiagramNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end DiagramNode@
+
+        class ClassNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end ClassNode@
+
+        class AttributeNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end AttributeNode@
+
+        class MethodNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end MethodNode@
+
+        class TypeNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end TypeNode@ 
+
+        class CommentNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end CommentNode@
+
+        class ExtendsNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end ExtendsNode@
+        
+        class ImplementsNode extends AbstractNode {
+        } [1] uses "childNodes" Node [*]; @end ImplementsNode@
+    } @end umlprinter@
+} @end JawsUMLPrinter@
+
+
+

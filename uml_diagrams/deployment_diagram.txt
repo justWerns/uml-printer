@@ -1,0 +1,16 @@
+deploymentDiagram UMLPrinter {
+    node ApplicationClient {
+        artifact UMLPrinter.jar {} "Java" link to JVM;
+        artifact JawsUMLParser.py {} "Python" link to Python Interpreter;
+        artifact PyToJava.py {} "Jython" link to Jython Interpreter;
+        node JVM {
+            version = 1.8;
+        }
+        node Python Interpreter {
+            version = 2.7.10;
+        }
+        node Jython Interpreter {
+            version = 2.7.0;
+        }
+    }
+}
