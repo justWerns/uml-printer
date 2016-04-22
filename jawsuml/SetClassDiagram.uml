@@ -1,0 +1,51 @@
+classDiagram SetClassDiagram {
+    @ This is a class diagram of interface java.util.Set and
+    related interfaces and classes from package java.util
+    for CSC520 Advanced Object Oriented Programming, Spring 2016,
+    D. Parson. Exam Question 5.
+    @
+    package java.util {
+        interface Iterable<T> {
+            + iterator() : Iterator<T> ;
+        } uses Iterator<E> ;
+        interface Iterator<E> {
+            + hasNext() : boolean ;
+            + next() : E ;
+            + remove() : void ;
+        }
+        interface Collection<E> extends Iterable<T>  {
+            + add (e : E) : boolean ;
+            + contains(o : Object) : boolean ;
+            + remove(o : Object) : boolean ;
+            + size() : int ;
+        }
+        interface Set<E> extends Collection<E> {
+            + add (e : E) : boolean ;
+            + contains(o : Object) : boolean ;
+            + remove(o : Object) : boolean ;
+            + size() : int ;
+        }
+        abstract class AbstractCollection<E> implements Collection<E> {
+        }
+        abstract class AbstractSet<E> implements Set<E> extends AbstractCollection<E> {
+        }
+        class HashSet<E> extends AbstractSet<E> {
+        }
+        interface SortedSet<E> extends Set<E> {
+        }
+        interface NavigableSet<E> extends SortedSet<E> {
+            @
+            For the exam question I am not holding you to modeling
+            NavigableSet & SortedSet, because I am requiring only as much
+            detail as was modeled for the List example in the first week.
+            UML models can elide whatever details you find appropriate.
+            However, NavigableSet & SortedSet do relate to Set, so ideally we
+            should model them here.
+            @
+        }
+        class TreeSet<E> implements NavigableSet<E> extends AbstractSet<E> {
+        }
+        class ClientCodeClass {
+        } uses Iterator<E>, uses Set<E> ;
+    }
+}

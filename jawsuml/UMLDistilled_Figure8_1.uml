@@ -1,0 +1,34 @@
+deploymentDiagram Figure8.1 {
+    @
+    // This is Figure 8.1 from UML Distilled,
+    // labeled "Example diagram" in the book.
+    // A deployment diagram is useful for showing the deployed
+    // components of a system that someone installing or administering
+    // that system needs to know about. It is what software providers ship.
+    @
+    node BrowserClient {
+        artifact browser ;
+    } "http/Internet" link to WebServer ;
+    node RichClient {
+        OS = Windows ;
+        artifact herculesClient.exe ;
+    } "http/LAN" link to WebServer ;
+    node WebServer {
+        OS = Solaris ;
+        webServer = apache ;
+        numberDeployed = 3 ;
+        artifact herculesWeb.war ;
+    } "Java RMI/LAN" link to ApplicationServer ;
+    node ApplicationServer {
+        artifact JoveGL.exe {
+            vendor = romanSoft ;
+            component = "GeneralLedger" ;
+        }
+        node EJBContainer {
+            artifact herculesBase.ear ;
+            artifact herculesAR.ear ;
+            artifact herculesAP.ear ;
+        } "JDBC" link to OracleDBMS ;
+        node OracleDBMS {}
+    }
+}

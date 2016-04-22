@@ -1,0 +1,27 @@
+classDiagram DynamicDispatchCompiledClass {
+    @
+    Illustrate the way C++ and Java compile pointers to methods
+    (C++ virtual functions) into the objects. An object's constructor
+    actually initialtizes these pointer attributes; the compiler generates
+    code to initialize the fields as part of the constructor, and the
+    linker resolves the actual address of the code. D. Parson, spring 2016.
+    @
+    class baseclass {
+        + method_A() ;
+        + method_B();
+        - pointerTo_baseclass_statics ;
+        @ baseclass has a static vtable[2] -- virtual function table @
+        - static pointerTo_method_A = addressOf_baseclass_method_A ;
+        - static pointerTo_method_B = addressOf_baseclass_method_B ;
+    }
+    class derivedclass extends baseclass {
+        @ method_A() is inherited from baseclass without redefinition. @
+        + method_B();
+        + method_C() ;
+        - pointerTo_derivedclass_statics ;
+        @ derivedclass has a static vtable[3] -- virtual function table @
+        - static pointerTo_method_A = addressOf_baseclass_method_A ;
+        - static pointerTo_method_B = addressOf_derivedclass_method_B ;
+        - static pointerTo_method_C = addressOf_derivedclass_method_C ;
+    }
+}

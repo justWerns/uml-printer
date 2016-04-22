@@ -1,0 +1,33 @@
+sequenceDiagram Figure4.1 {
+    @
+    // This diagram of Figure 4.1 has relatively few comments because it is
+    // missing from Genevieve's book of tactile diagrams. See
+    // UMLDistilled.Figure4.2.txt for a full set of comments.
+    @
+    object anOrder : Order {}
+    object anOrderLine : OrderLine {}
+    object aProduct : Product {}
+    object aCustomer : Customer {}
+    ? calls anOrder.calculatePrice() ;
+    @ "?" means a call come in from outside the displayed set of objects. @
+    anOrder.calculatePrice() calls anOrderLine.getQuantity() ;
+    anOrder.calculatePrice() calls anOrderLine.getProduct() ;
+    anOrderLine.getProduct() returns aProduct to anOrder.calculatePrice() ;
+    @
+    // aProduct is the return value to object anOrder from its
+    // method call to anOrderLine.getProduct(). Showing return
+    // values is optional in a UML sequence diagram, and is used to
+    // emphasize the data being returned from a method call.
+    // The Syntax for a return value is:
+    // CALLEDMETHOD returns VALUE to CALLER
+    // or "CALLEDMETHOD returns to CALLER" when there is no value to return.
+    @
+    anOrder.calculatePrice() calls aProduct.getPricingDetails() ;
+    anOrder.calculatePrice() calls anOrder.calculateBasePrice() ;
+    @
+    // anOrder.calculatePrice() activation calls method
+    // calculateBasePrice() on itself (on its own anOrder object).
+    @
+    anOrder.calculatePrice() calls anOrder.calculateDiscounts();
+    anOrder.calculateDiscounts() calls aCustomer.getDiscountInfo();
+}

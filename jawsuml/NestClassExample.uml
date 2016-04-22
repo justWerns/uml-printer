@@ -1,0 +1,29 @@
+classDiagram NestedClassExample {
+    @
+    // There are two nested classes in this class, a nested
+    // class whose object is part of the surrounding object
+    // -- Java terms this an 'inner class' -- and a static nested class.
+    // A method within an inner class can use fields and methods
+    // in the surrounding object directly; it is part of that object.
+    // A method in a static class can refere to data in its own object,
+    // but it is not part of the surround class' object.
+    @
+    class OuterClass {
+        - dataField : String ;
+        @ // A private attribute. @
+        + doSomething(iparameter : int) : String ;
+        @ // Public method with a parameter and a return value. @
+        - class InnerClass {
+            @
+            // There can be attributes, methods, and nested classes here.
+            // This inner class is private.
+            @
+        }
+        # static class StaticClass {
+            @
+            // There can be attributes, methods, and nested classes here.
+            // This nested static class is protected.
+            @
+        }
+    }
+}

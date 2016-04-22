@@ -1,0 +1,19 @@
+sequenceDiagram ActiveSeq {
+    @
+    // aProducer and aConsumer are active objects, meaning that each runs
+    // its own thread. aConsumer can call a method within aRepository
+    // while aProducer is still running in a method within aRepository.
+    // Therefore, we cannot use nesting in a dynamic function call textual
+    // representation to model sequence diagrams; the aProducer and aConsumer
+    // calls do not nest. {{}} denotes an active object.
+    @
+    active object aProducer : Producer {}
+    object aRepository : Repository {}
+    active object aConsumer : Consumer {}
+    aProducer calls aRepository.produce(product);
+    aConsumer calls aRepository.consume();
+    @ Two concurrent calls are both running within aRepository. @
+    aRepository.consume() returns product to aConsumer ;
+    aRepository.produce() returns to aProducer ;
+    @ This last return of type void simply returns control. @
+}

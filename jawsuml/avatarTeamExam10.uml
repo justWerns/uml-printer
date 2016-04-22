@@ -1,0 +1,42 @@
+classDiagram avatarTeam {
+    @ Exam Question 10 answer, CSC520 Spring 2016, D. Parson @
+    class avatarTeam extends processing.core.PApplet {
+        ~ backgroundColor : int ;
+        ~ cycleIndex : int ;
+        ~ cycleStep : int ;
+        ~ faculty : []  Professor ;
+        ~ aliens : [] Alien ;
+        ~ isFreeze : boolean ;
+        ~ level : int ;
+        ~ levelDirection : int ;
+        ~ reaction : char ;
+        + static main(passedArgs : [] String) : void ;
+        + setup() : void ;
+        + draw() : void ;
+        + drawFaculty() : void ;
+        + overlap(bb1 : [] int, bb2 : [] int);
+        + mousePressed() : void ;
+        + keyPressed() : void ;
+        ~ interface Actor {
+            + move(level : int, partner : Actor) : void;
+            + display(level : int) : void ;
+            + getBoundingBox() : [] int;
+        }
+        ~ class Professor implements Actor {
+            ~ Professor(new_avatarX : int, new_avatarY : int,
+                new_speedX : int, new_legX : int,
+                new_scale : float, new_level : int) ;
+            + move(level : int, partner : Actor) : void;
+            + display(level : int) : void ;
+            + getBoundingBox() : []int;
+        }
+        ~ class Alien implements Actor {
+            ~ Alien(new_avatarX : int, new_avatarY : int,
+                new_speedX : int,
+                new_scale : float, new_level : int) ;
+            + move(level : int, partner : Actor) : void;
+            + display(level : int) : void ;
+            + getBoundingBox() : [] int;
+        }
+    }
+}

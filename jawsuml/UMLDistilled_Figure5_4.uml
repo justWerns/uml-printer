@@ -1,0 +1,22 @@
+classDiagram Figure5.4 {
+    @ An example of Composition. @
+    class Point {
+    }
+    class Polygon {
+    } composedof[3..*] Point ;
+    @
+    // The Composition arrow <> is a solid diamond on a UML diagram.
+    // The above means that a Polygon is composed of 3 or more Points.
+    // UML also has a hollow diamond for Aggregation, but the textbook says
+    // 'Aggregation is strictly meaningless; as a result, I recommend that
+    // you ignore it in your own diagrams.' We will use Composition.
+    @
+    class Circle {
+    } composedof[1] "center" Point ;
+    @
+    // Technically, the above Composition says that a Circle is Composed
+    // of one Point that has the role of its 'center'. Of course a
+    // Circle would have other properties, at least a radius, but
+    // that is elided (not shown) in this example.
+    @
+}

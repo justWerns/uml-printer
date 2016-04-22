@@ -1,0 +1,27 @@
+objectDiagram Figure6.2 {
+    @
+    // This diagram of Figure 6.2,
+    // labeled "Object diagram showing example instances of Party"
+    // for the class diagram of Figure 6.1.
+    // UMLDistilled.Figure4.2.txt for a full set of comments.
+    @
+    object engineering : Organization {
+        location = "Boston";
+    } "parent" usehuh tools, "parent" usehuh apps ;
+    @
+    // We do not need multiplicity on associations because there is
+    // exactly one object per object name/box in an object diagram.
+    @
+    object tools : Organization {
+        location = "Chicago" ;
+    } "parent" usehuh Don, "parent" usehuh John ;
+    object apps : Organization {
+        location = "Saba" ;
+    }
+    object Don : Person {
+        location = "Champaigne" ;
+    }
+    object John : Person {
+        location = "Champaigne" ;
+    }
+}

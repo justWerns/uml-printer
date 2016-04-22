@@ -1,0 +1,11 @@
+parsetree = \
+(   'diagram:',
+    (   'classDiagram:',
+        'Figure5.21',
+        '{',
+        (   '@',
+            '\n    // An example of an active class. An active class is a class\n    // that has its own thread running inside each of its objects.\n    // You can think of it as a server object, running a thread\n    // that is its service thread. UML 2 uses a pair of vertical bars\n    // to denote an active class. This notation uses keyword active.\n    ',
+            '@'),
+        (   'class-sequence:',
+            ('class:', 'active', 'class', 'CommandProcessor', '{', '}')),
+        '}'))

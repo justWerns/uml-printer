@@ -1,0 +1,67 @@
+classDiagram ListClassDiagram {
+    @ This is a class diagram of interface java.util.List and
+    related interfaces and classes from package java.util
+    for CSC520 Advanced Object Oriented Programming, Spring 2016,
+    D. Parson.
+    @
+    package java.util {
+        interface Iterable<T> {
+            + iterator() : Iterator<T> ;
+        } uses Iterator<E> ;
+        interface Iterator<E> {
+            + hasNext() : boolean ;
+            + next() : E ;
+            + remove() : void ;
+        }
+        interface Collection<E> extends Iterable<T>  {
+            + add (e : E) : boolean ;
+            + contains(o : Object) : boolean ;
+            + remove(o : Object) : boolean ;
+            + size() : int ;
+        }
+        @ Interface Inheritance always places an interface at the
+        // destination of the triangular inheritance arrow. An Interface
+        is a specification. In this text notation an interface extends
+        another interface, but a class implements an interface.
+        The 'extends' and 'implements' keywords are from Java.
+        If the thing being extended by another interface or
+        implemented by a class is an interface, you have
+        Interface Inheritance.
+        @
+        interface List<E> extends Collection<E> {
+            + add (e : E) : boolean ;
+            + contains(o : Object) : boolean ;
+            + get(index : int) :E ;
+            + remove(index : int) : E ;
+            + remove(o : Object) : boolean ;
+            + size() : int ;
+        }
+        abstract class AbstractCollection<E> implements Collection<E> {
+        }
+        abstract class AbstractList<E> implements List<E> extends AbstractCollection<E> {
+        }
+        @ Implementation Inheritance always places a class at the
+        destination of the triangular inheritance arrow. An class
+        is an implementation of data fields and methods. In this
+        text notation we borrow from java and say that one class
+        extends another.
+        @
+        abstract class AbstractSequentialList<E> extends AbstractList<E> {
+        }
+        class LinkedList<E> extends AbstractSequentialList<E> {
+        }
+        class ArrayList<E> extends AbstractList<E> {
+        }
+        class ClientCodeClass {
+        } uses Iterator<E>, uses List<E> ;
+        @ Polymorphism means that a data field or method parameter or
+        local variable can take many forms. If ClientCodeClass uses
+        a field of type List<E>, for example, the actual object may be
+        a LinkedList<E>, ArrayList<E>, or some other subclass of List<E>.
+        'uses' points to the class or interface on its right.
+        'usedby' points to the class or interface on its left.
+        'useboth' points both directions. There is an arrow in each direction.
+        'assoc' has no arrows. It is an undirected association line in a diagram.
+        @
+    }
+}

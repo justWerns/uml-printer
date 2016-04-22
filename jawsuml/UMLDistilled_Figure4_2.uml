@@ -1,0 +1,48 @@
+sequenceDiagram Figure4.2 {
+    @
+    // Textbook says: A sequence diagram for distributed control.
+    // A sequence diagram shows high-level method calls between major
+    // objects in a system. I would not consider a String object to be a
+    // major object. Major objects are objects of important application
+    // domain classes. We usually model important exchanges of data
+    // or control via sequence diagrams. I often use them to model
+    // method calls made over a communications network such as TCP/IP.
+    @
+    object anOrder : Order {}
+    @
+    // Our notation uses the keyword "object" to declare an example
+    // object of some class like this:
+    // object EXAMPLE_OBJECT_NAME : CLASSNAME {}
+    // The CLASSNAME is usually a class appearing in a class diagram,
+    // but the EXAMPLE_OBJECT_NAME is just a representative object of
+    // that class. There could be many objects of CLASSNAME in a
+    // sequence diagram or in an object diagram, which we will get to
+    // in Chapter 6. The {} just signifies that an object appears as a box
+    // in a UML visual diagram.
+    @
+    object anOrderLine : OrderLine {}
+    object aProduct : Product {}
+    object aCustomer : Customer {}
+    ? calls anOrder.calculatePrice() ;
+    @
+    // The above line shows a method call coming into this diagram from
+    // outside the objects being modeled. An external object is calling
+    // method calculatePrice on object anOrder. Most method calls are between
+    // objects declared above, but a call from an external object can
+    // come in as denoted above. The above call is
+    // an initial call in a dynamic call graph being modeled. There could
+    // be many different dynamic call graphs, i.e., sequences of calls,
+    // for a given set of objects. Sequence diagrams usually show
+    // representative example sequences of calls.
+    @
+    anOrder.calculatePrice() calls anOrderLine.calculatePrice() ;
+    anOrderLine.calculatePrice() calls aProduct.getPrice(quantity : number) ;
+    anOrderLine.calculatePrice() calls aCustomer.getDiscountedValue(anOrder) ;
+    aCustomer.getDiscountedValue() calls anOrder.getBaseValue() ;
+    aCustomer.getDiscountedValue() sends discountedValue to anOrder.calculatePrice() ;
+    @
+    // The textbook labels this as a delayed (asynchronous) result returned
+    // across a network, triggered by the original call to
+    // aCustomer.getDiscountedValue().
+    @
+}

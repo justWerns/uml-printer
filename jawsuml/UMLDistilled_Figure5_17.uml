@@ -1,0 +1,9 @@
+classDiagram Figure5.17 {
+    @ An example of a template class, 'generic class' in Java. @
+    class Set<T> {
+        @ We just use the C++ and Java notation for the generic type. @
+        insert(T);
+        remove(T);
+        @ See the week 1 example of List<E> for more examples.@
+    }
+}

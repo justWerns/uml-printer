@@ -1,0 +1,96 @@
+classDiagram Figure3.1 {
+    @
+    // This is Figure 3.1 from UML Distilled,
+    // labeled 'A simple class diagram' in the book.
+    // It adds several constructs beyond our first example
+    // of java.util.List<E>. Comments about those appear
+    // immediately after their first use below.
+    @
+    class Customer {
+        name [1] ;
+        @
+        // 'name' above is an attribute, which is UML's term
+        // for a data field within a class. The '[1]' is
+        // optional. It is the attribute's multiplicity, which
+        // means the number of those fields that must appear.
+        // When the multiplicity is missing, we can assume one attribute.
+        // The textbook shows the full syntax of an attribute as follows:
+        // visibility name : type multiplicity = default
+        // The next comment line gives an example:
+        // - name : String = 'Untitled' ;
+        // Every part of the attribute declaration except its name
+        // is optional. The visibility is '+' for public,
+        // '-' for private, '#' for protected, and '~' for package.
+        // '~' means accessible anywhere in the package; Java uses
+        // this when you do not specify visibility. It is like a
+        // friend class or function in C++. When visibility is missing,
+        // it could be any of the above. The author often leaves it off.
+        @
+        address [0..1] ;
+        @ // Multiplicity '[0..1]' means 0 or 1 address attribute. @
+        getCreditRange() : String ;
+        @
+        // 'getCreditRange' is a method (member function) that
+        // returns a String. The parentheses denote it as a method.
+        @
+    }
+    class Employee {
+    }
+    class CorporateCustomer extends Customer {
+        @
+        // We are using 'extends' to show inheritance from a
+        // class to a class, or from an interface to an interface,
+        // just like in Java. This is an arrowed line with a triangular
+        // arrow head to the base class or interface in UML diagrams.
+        // We use 'implements' from a class to interface, as in Java.
+        // When the arrow points to an interface, that is always
+        // 'interface inheritance'. When it points to a class,
+        // it is 'implementation inheritance.' UML calls these arrows
+        // 'generalization'. The base class or interface is more
+        // general, and the derived class or interface is a 
+        // specialization of the base class or interface.
+        @
+        contactName ;
+        creditRating ;
+        creditLimit ;
+        billForMonth(Integer);
+        remind();
+    } [*]uses[0..1] "salesrep" Employee ;
+    @
+    // Compare that last line to the 'association' line in your
+    // Figure 3.1 textbook graph. The multiplicity [*] is on the
+    // CorporateCustomer, and the multiplicity [0..1] is on Employee.
+    // [*] means 0 or more. The 'salesrep' is an optional string
+    // tagged to the line that shows the role that an Employee
+    // plays in the association. Please read the 'Associations'
+    // part of Chapter 3. Two salient quotes from it are here:
+    // 'The name of the property goes at the target end of the
+    // association, together with its multiplicity.' and
+    // 'Associations can show multiplicities at both ends of the lines.'
+    @
+    class PersonalCustomer extends Customer {
+        creditCardNumber ;
+    }
+    class Product {
+    }
+    class OrderLine {
+        quantity : Integer ;
+        price : Money ;
+    } [*]uses[1] Product ;
+    class Order {
+        dateReceived : Date[0..1];
+        isPrepaid : Boolean[1];
+        number : String[1];
+        price : Money;
+        dispatch();
+        close();
+    } [*]uses[1]Customer, [1]uses[*] "lineItems" OrderLine ;
+    @
+    // There are two associations coming out of Order.
+    // The first goes from 0 or more Order objects to 1 Customer object.
+    // The second goes from 1 Order object to 0 or more OrderLine objects
+    // with a role of 'lineItems'. There can be many associations coming
+    // out of a given class. Our notation uses commas to separate
+    // them and a semicolon to terminate them.
+    @
+}

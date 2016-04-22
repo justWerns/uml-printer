@@ -1,0 +1,31 @@
+sequenceDiagram Figure4.3 {
+    @
+    // Textbook says: Creation and deletion of participants.
+    // It shows the equivalent of C++ or Java "new" to create an
+    // object during the execution of the sequence calls. Also,
+    // a Symbol called "destructs" shows the deletion of an object
+    // from the diagram.
+    @
+    object aHandler : Handler {}
+    ? calls aHandler.queryDatabase() ;
+    aHandler.queryDatabase() calls QueryCommand.new() constructs aQueryCommand ;
+    @
+    // This diagram does not declare "object aQueryCommand QueryCommand"
+    // at the top because the object comes into existence during execution
+    // of the sequence diagram by way of the new operator in C++ or Java.
+    // The above call actually creates the aQueryCommand by invoking "new".
+    // The constructs clause shows the name of the object created.
+    @
+    aQueryCommand calls DatabaseStatement.new() constructs aDatabaseStatement ;
+    @ The diagram does not show what method is running within aQueryCommand. @
+    aQueryCommand calls aDatabaseStatement.execute();
+    aDatabaseStatement.execute() sends results to aQueryCommand;
+    @ The textbook shows above line as an asynchronous return statement. @
+    aQueryCommand calls aQueryCommand.extractResults() ;
+    aQueryCommand calls aDatabaseStatement.close() ;
+    @ A final call from aQueryCommand object to aDatabaseStatement object. @
+    aDatabaseStatement.close() destructs aDatabaseStatement;
+    aQueryCommand sends results to aHandler.results ;
+    aQueryCommand destructs aQueryCommand ;
+    @ The aQueryCommand objects deletes itself. Textbook says "self-deletion".@
+}

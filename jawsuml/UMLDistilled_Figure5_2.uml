@@ -1,0 +1,21 @@
+classDiagram Figure5.2 {
+    @ An example of a static method. @
+    class Order {
+        getNumber() ;
+        static getNextNewNumber();
+        @
+        // The textbook discussion of Figure 5.2 says:
+        // 'Static features are underlined on a class diagram.'
+        // Since there is no way to underline plain text, our
+        // notation uses the 'static' keyword, just like Java.
+        // Static fields are shared by all objects in a class;
+        // there is only one static field for all objects, not one
+        // per object. Static methods can access static fields.
+        // Also, I always use parentheses for methods, whereas
+        // UML and the textbook denote methods by putting them in
+        // a portion of the class box that is separated from the attributes
+        // by a horizontal line.
+        @
+    }
+}
+

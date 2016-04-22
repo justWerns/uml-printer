@@ -1,0 +1,14 @@
+classDiagram Figure6.1 {
+    @
+    // This is Figure 6.1 from UML Distilled,
+    // labeled "Class diagram of Party composition structure" in the book.
+    // It is a class diagram that sets up for object diagram 6.2.
+    @
+    class Party {
+        location ;
+    }
+    class Person extends Party {
+    }
+    class Organization extends Party {
+    } "parent" [0..1]usehuh[*] "children" Party ;
+}

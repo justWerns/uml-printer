@@ -1,0 +1,11 @@
+classDiagram Figure5.21 {
+    @
+    // An example of an active class. An active class is a class
+    // that has its own thread running inside each of its objects.
+    // You can think of it as a server object, running a thread
+    // that is its service thread. UML 2 uses a pair of vertical bars
+    // to denote an active class. This notation uses keyword active.
+    @
+    active class CommandProcessor {
+    }
+}
