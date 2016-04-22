@@ -1,7 +1,6 @@
 package umlprinter;
 
 import java.io.*;
-import java.util.LinkedList;
 import java.util.List;
 
 public class JawsUMLPrinter {
@@ -17,13 +16,13 @@ public class JawsUMLPrinter {
                 new ObjectInputStream(new FileInputStream(readFile));
         parsetree = (List<Object>) ois.readObject();
         OutputStream outStream = new FileOutputStream(printFile);
-    }
+    } // end JawsUMLPrinter
 
     private void run() {
 
-    }
+    } // end run
 
     public static void main(String... args) {
 
     } // end main
-}
+} // end JawsUMLPrinter

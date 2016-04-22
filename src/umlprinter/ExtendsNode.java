@@ -2,4 +2,4 @@ package umlprinter;
 
 public class ExtendsNode extends AbstractNode {
 
-}
+} // end ExtendsNode

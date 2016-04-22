@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface Node {
     String printUMLIndented();
+
     String printUMLJaws();
+
     void createGraph();
 
     static Node buildNode(List<Object> parsetree)
@@ -16,4 +18,4 @@ public interface Node {
         }
         return NodeMap.get(typetag).newInstance();
     } // end buildNode
-}
+} // end Node
