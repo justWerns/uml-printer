@@ -9,7 +9,7 @@ public interface Node {
 
     void createGraph();
 
-    static Node buildNode(List<Object> parsetree)
+    static Node buildNode(List<?> parsetree)
             throws IllegalAccessException, InstantiationException {
         String typetag = (String) parsetree.get(0);
         if (!NodeMap.validTypetag(typetag)) {
