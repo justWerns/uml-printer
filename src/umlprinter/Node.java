@@ -1,21 +1,11 @@
 package umlprinter;
 
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
 
 public interface Node {
-    String printUMLIndented();
+    String printUMLIndented() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
     String printUMLJaws();
 
     void createGraph();
-
-    static Node buildNode(List<?> parsetree)
-            throws IllegalAccessException, InstantiationException {
-        String typetag = (String) parsetree.get(0);
-        if (!NodeMap.validTypetag(typetag)) {
-            throw new IllegalStateException(
-                    "Found invalid typetag: " + typetag);
-        }
-        return NodeMap.get(typetag).newInstance();
-    } // end buildNode
 } // end Node

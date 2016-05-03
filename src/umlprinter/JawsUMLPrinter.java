@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class JawsUMLPrinter {
@@ -19,8 +20,8 @@ public class JawsUMLPrinter {
     } // end JawsUMLPrinter
 
     private void run(String printType)
-            throws InstantiationException, IllegalAccessException {
-        Node base = Node.buildNode(parsetree);
+            throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        Node base = AbstractNode.buildNode(parsetree);
         switch (printType) {
             case "jaws":
                 outStream.print(base.printUMLJaws());
@@ -39,6 +40,7 @@ public class JawsUMLPrinter {
                 );
                 break;
         } // end switch
+        outStream.close();
     } // end run
 
     private static JawsUMLPrinter createPrinter(String... args) {
@@ -59,7 +61,7 @@ public class JawsUMLPrinter {
     } // end createPrinter
 
     public static void main(String... args)
-            throws IllegalAccessException, InstantiationException {
+            throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         final String USAGE = "java JawsUMLPrinter PRINTTYPE INFILE OUTFILE";
         JawsUMLPrinter printer;
 
