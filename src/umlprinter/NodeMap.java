@@ -10,19 +10,18 @@ public class NodeMap {
     static {
         Map<String, Class<? extends Node>> buildMap = new HashMap<>();
         buildMap.put("@", CommentNode.class);
-        buildMap.put("diagram:", DiagramNode.class);
+        buildMap.put("diagram:", RootNode.class);
         buildMap.put("classDiagram:", DiagramNode.class); // TODO: probably wrong
-        buildMap.put("class-sequence:", RootNode.class); // TODO: definitely wrong
+        buildMap.put("class-sequence:", TrivialNode.class); // TODO: definitely wrong
         buildMap.put("class:", ClassNode.class);
         buildMap.put("extends", ExtendsNode.class);
-        buildMap.put("class-contents:", RootNode.class);
+        buildMap.put("class-contents:", TrivialNode.class);
         buildMap.put("attribute:", AttributeNode.class);
         buildMap.put("type:", TypeNode.class);
-        buildMap.put("[", RootNode.class);
+        buildMap.put("[", TrivialNode.class);
         buildMap.put("method:", MethodNode.class);
-        buildMap.put("static", RootNode.class);
+        buildMap.put("static", TrivialNode.class);
         buildMap.put("param-list:", ParamNode.class);
-        buildMap.put("passedArgs", RootNode.class);
         buildMap.put("interface:", ClassNode.class);
         buildMap.put("implements", ImplementsNode.class);
         nodeMap = Collections.unmodifiableMap(buildMap);

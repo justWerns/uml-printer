@@ -17,4 +17,12 @@ hs_err_pid*
 # Intellij Stuff #
 .idea/*
 *.iml
+
+# Genevieve Hacks #
 git.txt
+
+# Application Intermediates #
+jawsuml/*_uml_*.py
+jawsuml/parsetab.py
+jawsuml/parser.out
+*.jobj

@@ -24,11 +24,12 @@ public abstract class AbstractNode implements Node {
         for (Object obj : parsetree) {
             if (obj instanceof String) {
                 output.append(obj);
+                output.append(' ');
             } else {
                 output.append(
                     AbstractNode.buildNode((List<?>) obj).printUMLIndented());
+                output.append('\n');
             } // end if
-            output.append(' ');
         }
         return output.toString();
     } // end printUMLIndented
