@@ -9,10 +9,11 @@ public class DiagramNode extends AbstractNode {
         super(parsetree);
     } // end constructor
 
+    @Override
     public String printUMLIndented()
             throws InvocationTargetException, NoSuchMethodException,
                    InstantiationException, IllegalAccessException {
-        if (!validateDiagramSyntax()) {
+        if (!validateParsetree()) {
             throw new InputMismatchException(
                 "Found diagram node with unexpected content. Is this a parse "
                 + "error or does the node need to be updated?"
@@ -33,7 +34,11 @@ public class DiagramNode extends AbstractNode {
         return output.toString();
     } // end printUMLIndented
 
-    private boolean validateDiagramSyntax() {
+    // LAYOUT:
+    // <diagram type> <name> {
+    //     <child node>*
+    // }
+    private boolean validateParsetree() {
         boolean valid =
                parsetree.size() >= 4
                && parsetree.get(0) instanceof String
@@ -44,5 +49,5 @@ public class DiagramNode extends AbstractNode {
             valid = parsetree.get(i) instanceof List;
         } // end for
         return valid;
-    } // end validateDiagramSyntax
+    } // end validateParsetree
 } // end DiagramNode
