@@ -19,7 +19,7 @@ public class ParamNode extends AbstractNode {
                 output.append(printParam((List<?>) obj));
             } // end if
             output.append(' ');
-        }
+        } // end for
         return output.toString();
     } // end printUMLIndented
 
@@ -30,4 +30,4 @@ public class ParamNode extends AbstractNode {
             + " : "
             + AbstractNode.buildNode((List<?>) param.get(1)).printUMLIndented();
     } // end printParam
-} // end ClassNode
+} // end ParamNode

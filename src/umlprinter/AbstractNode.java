@@ -11,11 +11,11 @@ public abstract class AbstractNode implements Node {
     public AbstractNode() {
         throw new UnsupportedOperationException(
             "A node cannot be constructed using the default constructor.");
-    }
+    } // end default constructor
 
     public AbstractNode(List<Object> parsetree) {
         this.parsetree = parsetree;
-    }
+    } // end constructor
 
     public String printUMLIndented()
             throws InvocationTargetException, NoSuchMethodException,
@@ -30,7 +30,7 @@ public abstract class AbstractNode implements Node {
                     AbstractNode.buildNode((List<?>) obj).printUMLIndented());
                 output.append('\n');
             } // end if
-        }
+        } // end for
         return output.toString();
     } // end printUMLIndented
 
@@ -49,7 +49,7 @@ public abstract class AbstractNode implements Node {
         if (!NodeMap.validTypetag(typetag)) {
             throw new IllegalStateException(
                     "Found invalid typetag: " + typetag);
-        }
+        } // end if
         Constructor<? extends Node> constructor =
             NodeMap.get(typetag).getConstructor(List.class);
         return constructor.newInstance(parsetree);

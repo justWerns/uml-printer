@@ -10,12 +10,12 @@ public class NodeMap {
     static {
         Map<String, Class<? extends Node>> buildMap = new HashMap<>();
         buildMap.put("@", CommentNode.class);
-        buildMap.put("diagram:", RootNode.class);
-        buildMap.put("classDiagram:", DiagramNode.class); // TODO: probably wrong
-        buildMap.put("class-sequence:", TrivialNode.class); // TODO: definitely wrong
+        buildMap.put("diagram:", ContainerNode.class);
+        buildMap.put("classDiagram:", DiagramNode.class);
+        buildMap.put("class-sequence:", ContainerNode.class);
         buildMap.put("class:", ClassNode.class);
         buildMap.put("extends", ExtendsNode.class);
-        buildMap.put("class-contents:", TrivialNode.class);
+        buildMap.put("class-contents:", ContainerNode.class);
         buildMap.put("attribute:", AttributeNode.class);
         buildMap.put("type:", TypeNode.class);
         buildMap.put("[", TrivialNode.class);
@@ -25,7 +25,7 @@ public class NodeMap {
         buildMap.put("interface:", ClassNode.class);
         buildMap.put("implements", ImplementsNode.class);
         nodeMap = Collections.unmodifiableMap(buildMap);
-    } // end static
+    } // end static block
 
     public static Class<? extends Node> get(String typetag) {
         return nodeMap.get(typetag);
@@ -34,4 +34,4 @@ public class NodeMap {
     public static boolean validTypetag(String typetag) {
         return nodeMap.containsKey(typetag);
     } // end validTypetag
-}
+} // end NodeMap

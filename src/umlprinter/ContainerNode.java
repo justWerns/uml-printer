@@ -3,9 +3,8 @@ package umlprinter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-// TODO: Pretty sure this gets replaced by the ContainerNode.
-public class RootNode extends AbstractNode {
-    public RootNode(List<Object> parsetree) {
+public class ContainerNode extends AbstractNode {
+    public ContainerNode(List<Object> parsetree) {
         super(parsetree);
     } // end constructor
 
@@ -23,5 +22,5 @@ public class RootNode extends AbstractNode {
             output.append('\n');
         } // end for
         return output.toString();
-    }
-} // end RootNode
+    } // end printUMLIndented()
+} // end ContainerNode
