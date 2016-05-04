@@ -12,7 +12,9 @@ public class NodeMap {
         buildMap.put("@", CommentNode.class);
         buildMap.put("diagram:", ContainerNode.class);
         buildMap.put("classDiagram:", DiagramNode.class);
+        buildMap.put("sequenceDiagram:", DiagramNode.class);
         buildMap.put("class-sequence:", ContainerNode.class);
+        buildMap.put("sequence-list:", ContainerNode.class);
         buildMap.put("class:", ClassNode.class);
         buildMap.put("class-contents:", ContainerNode.class);
         buildMap.put("attribute:", AttributeNode.class);

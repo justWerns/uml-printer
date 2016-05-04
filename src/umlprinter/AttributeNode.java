@@ -12,7 +12,7 @@ public class AttributeNode extends AbstractNode {
     public String printUMLIndented()
             throws InvocationTargetException, NoSuchMethodException,
                    InstantiationException, IllegalAccessException {
-        StringBuilder out = new StringBuilder();
+        StringBuilder out = new StringBuilder(getIndent());
         for (Object obj : parsetree.subList(1, parsetree.size())) {
             if (obj instanceof String) {
                 out.append(obj);

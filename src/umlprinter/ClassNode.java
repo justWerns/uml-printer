@@ -16,12 +16,15 @@ public class ClassNode extends AbstractNode {
     @Override
     public String printUMLIndented()
             throws InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+                   InstantiationException, IllegalAccessException {
         StringBuilder out = new StringBuilder("\n");
+        out.append(getIndent());
         for (Object obj : parsetree.subList(1, parsetree.size())) {
             if (obj instanceof String) {
                 if (obj.equals("{")) {
                     out.append(obj).append('\n');
+                } else if (obj.equals("}")) {
+                    out.append(getIndent()).append(obj);
                 } else {
                     out.append(obj).append(' ');
                 }
@@ -31,8 +34,10 @@ public class ClassNode extends AbstractNode {
                         || subnode.get(0).equals("implements")) {
                     out.append(printInheritance(subnode));
                 } else {
+                    indentLevel++;
                     out.append(
                         AbstractNode.buildNode(subnode).printUMLIndented());
+                    indentLevel--;
                 } // end if
             } // end if
         } // end for

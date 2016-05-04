@@ -23,18 +23,19 @@ public class DiagramNode extends AbstractNode {
                 + "error or does the node need to be updated?"
             );
         } // end if
-        StringBuilder output = new StringBuilder();
+        StringBuilder output = new StringBuilder(getIndent());
         String diagramType = (String) parsetree.get(0);
         output.append(diagramType.substring(0, diagramType.length() - 1))
               .append(' ')
               .append(parsetree.get(1))
               .append(" {\n");
+        indentLevel++;
         for(int i = 3; i < parsetree.size() - 1; i++) {
             output.append(AbstractNode.buildNode(
                 (List<?>) parsetree.get(i)).printUMLIndented());
-            output.append('\n');
         } // end for
-        output.append("}\n");
+        indentLevel--;
+        output.append(getIndent()).append("}\n");
         return output.toString();
     } // end printUMLIndented
 
