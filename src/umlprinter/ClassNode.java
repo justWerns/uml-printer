@@ -24,10 +24,8 @@ public class ClassNode extends AbstractNode {
                 // poorly written way to exclude the first item
                 // TODO: be less stupid
             } else if (obj instanceof String) {
-                if (obj.equals("{")) {
-                    out.append("{\n");
-                } else if (obj.equals("}")) {
-                    out.append("}\n");
+                if (obj.equals("{") || obj.equals("}")) {
+                    out.append(obj).append('\n');
                 } else {
                     out.append(obj).append(' ');
                 }
