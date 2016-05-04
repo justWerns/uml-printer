@@ -5,6 +5,10 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class DiagramNode extends AbstractNode {
+    // LAYOUT:
+    // <diagram type> <name> {
+    //     <child node>*
+    // }
     public DiagramNode(List<Object> parsetree) {
         super(parsetree);
     } // end constructor
@@ -34,10 +38,6 @@ public class DiagramNode extends AbstractNode {
         return output.toString();
     } // end printUMLIndented
 
-    // LAYOUT:
-    // <diagram type> <name> {
-    //     <child node>*
-    // }
     private boolean validateParsetree() {
         boolean valid =
                parsetree.size() >= 4
