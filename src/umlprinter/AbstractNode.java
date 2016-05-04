@@ -7,6 +7,7 @@ import java.util.List;
 // abstract node class
 public abstract class AbstractNode implements Node {
     protected final List<Object> parsetree;
+    protected static int indentLevel = 0;
 
     public AbstractNode() {
         throw new UnsupportedOperationException(
@@ -34,7 +35,9 @@ public abstract class AbstractNode implements Node {
         return output.toString();
     } // end printUMLIndented
 
-    public String printUMLJaws() {
+    public String printUMLJaws()
+            throws InvocationTargetException, NoSuchMethodException,
+                   InstantiationException, IllegalAccessException {
         return "STUB";
     } // end printUMLJaws
 
@@ -54,4 +57,8 @@ public abstract class AbstractNode implements Node {
             NodeMap.get(typetag).getConstructor(List.class);
         return constructor.newInstance(parsetree);
     } // end buildNode
+
+    protected String getIndent() {
+        return new String(new char[indentLevel * 4]).replace('\0', ' ');
+    }
 } // end AbstractNode

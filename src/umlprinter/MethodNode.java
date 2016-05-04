@@ -21,8 +21,12 @@ public class MethodNode extends AbstractNode {
                 }
             } else {
                 List<?> subnode = (List) obj;
-                out.append(AbstractNode.buildNode(
-                    (List) obj).printUMLIndented());
+                if (subnode.get(0).equals("static")) {
+                    out.append("static ");
+                } else {
+                    out.append(AbstractNode.buildNode(
+                        (List) obj).printUMLIndented());
+                }
             }
         }
         return out.toString();

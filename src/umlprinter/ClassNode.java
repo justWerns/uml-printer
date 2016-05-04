@@ -1,7 +1,6 @@
 package umlprinter;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class ClassNode extends AbstractNode {
@@ -18,10 +17,10 @@ public class ClassNode extends AbstractNode {
     public String printUMLIndented()
             throws InvocationTargetException, NoSuchMethodException,
             InstantiationException, IllegalAccessException {
-        StringBuilder out = new StringBuilder();
+        StringBuilder out = new StringBuilder("\n");
         for (Object obj : parsetree.subList(1, parsetree.size())) {
             if (obj instanceof String) {
-                if (obj.equals("{") || obj.equals("}")) {
+                if (obj.equals("{")) {
                     out.append(obj).append('\n');
                 } else {
                     out.append(obj).append(' ');

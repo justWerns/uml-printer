@@ -18,7 +18,6 @@ public class NodeMap {
         buildMap.put("attribute:", AttributeNode.class);
         buildMap.put("type:", TypeNode.class);
         buildMap.put("method:", MethodNode.class);
-        buildMap.put("static", TrivialNode.class);
         buildMap.put("param-list:", ParamNode.class);
         buildMap.put("interface:", ClassNode.class);
         nodeMap = Collections.unmodifiableMap(buildMap);

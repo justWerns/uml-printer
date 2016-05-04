@@ -7,7 +7,7 @@ public interface Node {
         throws InvocationTargetException, NoSuchMethodException,
                InstantiationException, IllegalAccessException;
 
-    String printUMLJaws();
+    String printUMLJaws() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
     void createGraph();
 } // end Node

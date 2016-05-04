@@ -20,6 +20,7 @@ public class TypeNode extends AbstractNode {
                 out.append(' ');
             }
         }
+        out.deleteCharAt(out.length() - 1);
         return out.toString();
     }
 } // end TypeNode
