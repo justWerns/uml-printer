@@ -12,7 +12,7 @@ public class ParamNode extends AbstractNode {
             throws InvocationTargetException, NoSuchMethodException,
             InstantiationException, IllegalAccessException {
         StringBuilder output = new StringBuilder();
-        for (Object obj : parsetree) {
+        for (Object obj : parsetree.subList(1, parsetree.size())) {
             if (obj instanceof String) {
                 output.append(obj);
             } else {
