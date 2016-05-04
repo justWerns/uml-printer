@@ -14,7 +14,6 @@ public class NodeMap {
         buildMap.put("classDiagram:", DiagramNode.class);
         buildMap.put("class-sequence:", ContainerNode.class);
         buildMap.put("class:", ClassNode.class);
-        buildMap.put("extends", ExtendsNode.class);
         buildMap.put("class-contents:", ContainerNode.class);
         buildMap.put("attribute:", AttributeNode.class);
         buildMap.put("type:", TypeNode.class);
@@ -23,7 +22,6 @@ public class NodeMap {
         buildMap.put("static", TrivialNode.class);
         buildMap.put("param-list:", ParamNode.class);
         buildMap.put("interface:", ClassNode.class);
-        buildMap.put("implements", ImplementsNode.class);
         nodeMap = Collections.unmodifiableMap(buildMap);
     } // end static block
 
