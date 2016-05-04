@@ -19,11 +19,8 @@ public class ClassNode extends AbstractNode {
             throws InvocationTargetException, NoSuchMethodException,
             InstantiationException, IllegalAccessException {
         StringBuilder out = new StringBuilder();
-        for (Object obj : parsetree) {
-            if (obj.equals("class:")) {
-                // poorly written way to exclude the first item
-                // TODO: be less stupid
-            } else if (obj instanceof String) {
+        for (Object obj : parsetree.subList(1, parsetree.size())) {
+            if (obj instanceof String) {
                 if (obj.equals("{") || obj.equals("}")) {
                     out.append(obj).append('\n');
                 } else {

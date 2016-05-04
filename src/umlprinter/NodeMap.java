@@ -17,7 +17,6 @@ public class NodeMap {
         buildMap.put("class-contents:", ContainerNode.class);
         buildMap.put("attribute:", AttributeNode.class);
         buildMap.put("type:", TypeNode.class);
-        buildMap.put("[", TrivialNode.class);
         buildMap.put("method:", MethodNode.class);
         buildMap.put("static", TrivialNode.class);
         buildMap.put("param-list:", ParamNode.class);

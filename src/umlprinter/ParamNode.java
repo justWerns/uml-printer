@@ -27,7 +27,6 @@ public class ParamNode extends AbstractNode {
             throws InvocationTargetException, NoSuchMethodException,
                    InstantiationException, IllegalAccessException {
         return param.get(0)
-            + " : "
             + AbstractNode.buildNode((List<?>) param.get(1)).printUMLIndented();
     } // end printParam
 } // end ParamNode
