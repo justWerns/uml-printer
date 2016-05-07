@@ -1,5 +1,6 @@
 package umlprinter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class TypeNode extends AbstractNode {
@@ -23,4 +24,11 @@ public class TypeNode extends AbstractNode {
         out.deleteCharAt(out.length() - 1);
         return out.toString();
     }
+
+    @Override
+    public String printUMLJaws()
+        throws InvocationTargetException, NoSuchMethodException,
+        InstantiationException, IllegalAccessException {
+        return "STUB";
+    } // end printUMLJaws
 } // end TypeNode

@@ -18,28 +18,13 @@ public abstract class AbstractNode implements Node {
         this.parsetree = parsetree;
     } // end constructor
 
-    public String printUMLIndented()
+    public abstract String printUMLIndented()
             throws InvocationTargetException, NoSuchMethodException,
-                   InstantiationException, IllegalAccessException {
-        StringBuilder output = new StringBuilder();
-        for (Object obj : parsetree) {
-            if (obj instanceof String) {
-                output.append(obj);
-                output.append(' ');
-            } else {
-                output.append(
-                    AbstractNode.buildNode((List<?>) obj).printUMLIndented());
-                output.append('\n');
-            } // end if
-        } // end for
-        return output.toString();
-    } // end printUMLIndented
+                   InstantiationException, IllegalAccessException;
 
-    public String printUMLJaws()
+    public abstract String printUMLJaws()
             throws InvocationTargetException, NoSuchMethodException,
-                   InstantiationException, IllegalAccessException {
-        return "STUB";
-    } // end printUMLJaws
+                   InstantiationException, IllegalAccessException;
 
     public void createGraph() {
         // stub to be implemented.

@@ -23,4 +23,11 @@ public class ContainerNode extends AbstractNode {
         } // end for
         return output.toString();
     } // end printUMLIndented()
+
+    @Override
+    public String printUMLJaws()
+        throws InvocationTargetException, NoSuchMethodException,
+        InstantiationException, IllegalAccessException {
+        return "STUB";
+    } // end printUMLJaws
 } // end ContainerNode

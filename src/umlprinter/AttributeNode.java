@@ -20,8 +20,13 @@ public class AttributeNode extends AbstractNode {
                     out.append(' ');
                 }
             } else {
-                out.append(AbstractNode.buildNode(
-                    (List) obj).printUMLIndented());
+                List<?> subnode = (List) obj;
+                if (subnode.get(0).equals("static")) {
+                    out.append("static ");
+                } else {
+                    out.append(AbstractNode.buildNode(
+                        (List) obj).printUMLIndented());
+                }
             }
         }
         return out.toString();

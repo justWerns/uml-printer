@@ -51,4 +51,11 @@ public class DiagramNode extends AbstractNode {
         } // end for
         return valid;
     } // end validateParsetree
+
+    @Override
+    public String printUMLJaws()
+        throws InvocationTargetException, NoSuchMethodException,
+        InstantiationException, IllegalAccessException {
+        return "STUB";
+    } // end printUMLJaws
 } // end DiagramNode

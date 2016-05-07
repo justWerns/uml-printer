@@ -53,4 +53,11 @@ public class ClassNode extends AbstractNode {
         out.append(' ');
         return out.toString();
     } // end printInheritance
+
+    @Override
+    public String printUMLJaws()
+        throws InvocationTargetException, NoSuchMethodException,
+        InstantiationException, IllegalAccessException {
+        return "STUB";
+    } // end printUMLJaws
 } // end ClassNode

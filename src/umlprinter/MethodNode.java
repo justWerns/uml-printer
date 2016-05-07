@@ -31,4 +31,11 @@ public class MethodNode extends AbstractNode {
         }
         return out.toString();
     }
+
+    @Override
+    public String printUMLJaws()
+        throws InvocationTargetException, NoSuchMethodException,
+        InstantiationException, IllegalAccessException {
+        return "STUB";
+    } // end printUMLJaws
 } // end MethodNode
