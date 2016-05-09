@@ -22,6 +22,12 @@ public class NodeMap {
         buildMap.put("method:", MethodNode.class);
         buildMap.put("param-list:", ParamNode.class);
         buildMap.put("interface:", ClassNode.class);
+        buildMap.put("object:", ObjectNode.class);
+        buildMap.put("call:", CallNode.class);
+        buildMap.put("return:", ReturnNode.class);
+        buildMap.put("send:", ReturnNode.class);
+        buildMap.put("constructs:", ConstructsNode.class);
+        buildMap.put("destruct:", ReturnNode.class);
         nodeMap = Collections.unmodifiableMap(buildMap);
     } // end static block
 
