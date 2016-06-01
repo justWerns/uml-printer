@@ -58,6 +58,27 @@ public class ClassNode extends AbstractNode {
     public String printUMLJaws()
         throws InvocationTargetException, NoSuchMethodException,
         InstantiationException, IllegalAccessException {
-        return "STUB";
+        StringBuilder out = new StringBuilder("\n");
+        for (Object obj : parsetree.subList(1, parsetree.size())) {
+            if (obj instanceof String) {
+                if (obj.equals("{")) {
+                    out.append(obj).append('\n');
+                } else if (obj.equals("}")) {
+                    out.append(obj);
+                } else {
+                     out.append(obj).append(' ');
+                }
+            } else {
+                List<?> subnode = (List) obj;
+                if (subnode.get(0).equals("extends")
+                        || subnode.get(0).equals("implements")) {
+                    out.append(printInheritance(subnode));
+                } else {
+                    out.append(
+                        AbstractNode.buildNode(subnode).printUMLJaws());
+                } // end if
+            } // end if
+        } // end for
+        return out.toString();
     } // end printUMLJaws
 } // end ClassNode

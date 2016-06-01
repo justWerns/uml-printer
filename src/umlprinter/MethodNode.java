@@ -30,12 +30,26 @@ public class MethodNode extends AbstractNode {
             }
         }
         return out.toString();
-    }
+    } // end UML indented
 
     @Override
     public String printUMLJaws()
         throws InvocationTargetException, NoSuchMethodException,
         InstantiationException, IllegalAccessException {
-        return "STUB";
+        StringBuilder out = new StringBuilder();
+        for (Object obj : parsetree.subList(1, parsetree.size())) {
+            if (obj instanceof String) {
+                out.append(obj);
+            } else {
+                List<?> subnode = (List) obj;
+                if (subnode.get(0).equals("static")) {
+                    out.append("static ");
+                } else {
+                    out.append(AbstractNode.buildNode(
+                        (List) obj).printUMLJaws());
+                }
+            }
+        }
+        return out.toString();
     } // end printUMLJaws
 } // end MethodNode

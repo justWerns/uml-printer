@@ -56,6 +56,23 @@ public class DiagramNode extends AbstractNode {
     public String printUMLJaws()
         throws InvocationTargetException, NoSuchMethodException,
         InstantiationException, IllegalAccessException {
-        return "STUB";
+        if (!validateParsetree()) {
+            throw new InputMismatchException(
+                "Found diagram node with unexpected content. Is this a parse "
+                + "error or does the node need to be updated?"
+            );
+        } // end if
+        StringBuilder output = new StringBuilder();
+        String diagramType = (String) parsetree.get(0);
+        output.append(diagramType.substring(0, diagramType.length() - 1))
+              .append(' ')
+              .append(parsetree.get(1))
+              .append(" {\n");
+        for(int i = 3; i < parsetree.size() - 1; i++) {
+            output.append(AbstractNode.buildNode(
+                (List<?>) parsetree.get(i)).printUMLJaws());
+        } // end for
+        output.append("}\n");
+        return output.toString();
     } // end printUMLJaws
 } // end DiagramNode

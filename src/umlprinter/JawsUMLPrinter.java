@@ -35,7 +35,7 @@ public class JawsUMLPrinter {
                 break;
             default:
                 System.out.println(
-                        "Invalid print type give. Restart the program with one "
+                        "Invalid print type given. Restart the program with one "
                         + "of the following print types: jaws, indented, graph"
                 );
                 break;

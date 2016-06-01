@@ -38,12 +38,18 @@ public class AttributeNode extends AbstractNode {
                    InstantiationException, IllegalAccessException {
         StringBuilder out = new StringBuilder();
         for (Object obj : parsetree.subList(1, parsetree.size())) {
-            if (obj instanceof String)
+            if (obj instanceof String) {
                 out.append(obj);
-            else
-                out.append(AbstractNode.buildNode(
-                    (List) obj).printUMLJaws());
+            } else {
+                List<?> subnode = (List) obj;
+                if (subnode.get(0).equals("static")) {
+                    out.append("static ");
+                } else {
+                    out.append(AbstractNode.buildNode(
+                        (List) obj).printUMLJaws());
+                }
             }
+        }
         return out.toString();
-    }
+    } // end JAWS
 } // end AttributeNode

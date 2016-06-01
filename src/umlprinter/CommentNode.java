@@ -22,6 +22,10 @@ public class CommentNode extends AbstractNode {
     public String printUMLJaws()
         throws InvocationTargetException, NoSuchMethodException,
         InstantiationException, IllegalAccessException {
-        return "STUB";
+        StringBuilder out = new StringBuilder("\n");
+        for (Object obj : parsetree) {
+            out.append(obj);
+        }
+        return out.append('\n').toString();
     } // end printUMLJaws
 } // end CommentNode

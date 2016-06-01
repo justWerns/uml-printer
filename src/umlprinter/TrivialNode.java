@@ -30,6 +30,17 @@ public class TrivialNode extends AbstractNode {
     public String printUMLJaws()
         throws InvocationTargetException, NoSuchMethodException,
         InstantiationException, IllegalAccessException {
-        return "STUB";
+        StringBuilder output = new StringBuilder();
+        for (Object obj : parsetree) {
+            if (obj instanceof String) {
+                output.append(obj);
+                output.append(' ');
+            } else {
+                output.append(
+                    AbstractNode.buildNode((List<?>) obj).printUMLJaws());
+                output.append('\n');
+            } // end if
+        } // end for
+        return output.toString();
     } // end printUMLJaws
 } // end TrivialNode

@@ -32,10 +32,23 @@ public class ParamNode extends AbstractNode {
         return out.toString();
     } // end printParam
 
+    private String printParamJaws(List<?> param)
+            throws InvocationTargetException, NoSuchMethodException,
+                   InstantiationException, IllegalAccessException {
+        return (String) param.get(0)
+            + AbstractNode.buildNode((List<?>) param.get(1)).printUMLJaws();
+    } // end printParamJAWS
+
     @Override
     public String printUMLJaws()
         throws InvocationTargetException, NoSuchMethodException,
         InstantiationException, IllegalAccessException {
-        return "STUB";
+        StringBuilder output = new StringBuilder();
+        output.append(printParamJaws((List<?>) parsetree.get(1)));
+        for (Object obj : parsetree.subList(2, parsetree.size())) {
+            output.append(", ");
+            output.append(printParamJaws((List<?>) obj));
+        } // end for
+        return output.toString();
     } // end printUMLJaws
 } // end ParamNode

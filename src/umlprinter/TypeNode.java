@@ -23,12 +23,23 @@ public class TypeNode extends AbstractNode {
         }
         out.deleteCharAt(out.length() - 1);
         return out.toString();
-    }
+    } // end UML indented
 
     @Override
     public String printUMLJaws()
         throws InvocationTargetException, NoSuchMethodException,
         InstantiationException, IllegalAccessException {
-        return "STUB";
+        StringBuilder out = new StringBuilder(":");
+        for (Object obj : parsetree.subList(1, parsetree.size())) {
+            if (obj instanceof String) {
+                out.append(obj).append(' ');
+            } else {
+                for (Object item : (List) obj) {
+                    out.append(item);
+                }
+            }
+        }
+        out.deleteCharAt(out.length() - 1);
+        return out.toString();
     } // end printUMLJaws
 } // end TypeNode
